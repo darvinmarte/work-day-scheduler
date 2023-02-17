@@ -1,33 +1,58 @@
-//the current day is displayed at the top of the calendar
-
 //presented with time blocks for standard business hours
 
 //each time block is color-coded to indicate whether it is in the past, present, or future
 
 // DEPENDENCIES
-// var hour = document.getElementById("start-quiz")
+
 
 // //DATA
 $(document).ready(function () {
-  // the current day is displayed at the top of the calendar
+  // // TODO: Add code to display the current date in the header of the page.
   var today = dayjs();
   $('#currentDay').text(today.format('MMM D, YYYY'));
+
   // I am presented with timeblocks for standard business hours
   // WHEN I view the timeblocks for that day
   // THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-  var currentTimeEl = dayjs();
-  var hourOfDay = currentTimeEl.format(“HH”);
-  $('#currentTime').text(hourOfDay);
-  currentTimeEl.visibility = “hidden”;
-  var hour9Time = Number($(“#hour-9").attr(“data-time”));
-  if (hourOfDay > hour9Time) {
-    console.log(hour9Time + ” is in the past”);
-  }
+  var hour = today.hour();
+
+ 
+  var timeB = $('.time-block');
+  var saver = $('.saveBtn');
+
+  $(timeB).each(function () {
+    currentThing = this;
+    var myID = $(currentThing).attr('id');
+    var value = myID.substring(5,7);
+    console.log()
+
+    if (value > hour) {
+      $(currentThing).addClass("future");
+    } else if (value == hour){
+      $(currentThing).addClass("present");
+     } else { 
+      $(currentThing).addClass("past");
+     }
+  });
+ 
+  
+
+
+
 });
-// var blockHour =
-var timeBlockEl = document.querySelector('#time-block');
 
 
+
+
+  // $(timeB).on('click', )
+  
+
+
+  // TODO: Add a listener for click events on the save button. This code should
+    // use the id in the containing time-block as a key to save the user input in
+    // local storage.
+
+// .addEventListener("click", );
 
 
 
@@ -51,7 +76,4 @@ var timeBlockEl = document.querySelector('#time-block');
     //
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
-    // attribute of each time-block be used to do this?
-    //
-    // TODO: Add code to display the current date in the header of the page.
-  });
+    // attribute of each time-block be used to do this? 
